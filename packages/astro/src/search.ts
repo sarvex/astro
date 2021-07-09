@@ -39,6 +39,8 @@ type SearchResult =
       statusCode: 404;
     };
 
+const pageExtensions = ['.astro', '.md', '.mdc'];
+
 /** Given a URL, attempt to locate its source file (similar to Snowpack’s load()) */
 export function searchForPage(url: URL, astroConfig: AstroConfig): SearchResult {
   const reqPath = decodeURI(url.pathname);
@@ -46,7 +48,7 @@ export function searchForPage(url: URL, astroConfig: AstroConfig): SearchResult 
 
   // Try to find index.astro/md paths
   if (reqPath.endsWith('/')) {
-    const candidates = [`${base}index.astro`, `${base}index.md`];
+    const candidates = pageExtensions.map(ext => `${base}index${ext}`);
     const location = findAnyPage(candidates, astroConfig);
     if (location) {
       return {
@@ -57,7 +59,7 @@ export function searchForPage(url: URL, astroConfig: AstroConfig): SearchResult 
     }
   } else {
     // Try to find the page by its name.
-    const candidates = [`${base}.astro`, `${base}.md`];
+    const candidates = pageExtensions.map(ext => `${base}${ext}`);
     let location = findAnyPage(candidates, astroConfig);
     if (location) {
       return {
@@ -69,7 +71,7 @@ export function searchForPage(url: URL, astroConfig: AstroConfig): SearchResult 
   }
 
   // Try to find name/index.astro/md
-  const candidates = [`${base}/index.astro`, `${base}/index.md`];
+  const candidates = pageExtensions.map(ext => `${base}/index${ext}`);
   const location = findAnyPage(candidates, astroConfig);
   if (location) {
     return {
