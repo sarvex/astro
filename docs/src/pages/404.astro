@@ -2,7 +2,19 @@
 import Layout from '../layouts/Main.astro';
 ---
 
-<Layout content={{title: "404"}}>
+<style>
+  .center {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: calc(100% - var(--theme-navbar-height));
+  }
+</style>
+
+
+<Layout class="center" content={{title: "404"}}>
   <p>This page isn't in our solar system.</p>
   <a href="/">Take me home.</a>
 </Layout>

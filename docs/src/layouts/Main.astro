@@ -5,7 +5,7 @@ import ThemeToggle from '../components/ThemeToggle.tsx';
 import DocSidebar from '../components/DocSidebar.tsx';
 import MenuToggle from '../components/MenuToggle.tsx';
 
-const { content = {} } = Astro.props;
+const { content = {}, class : className = "" } = Astro.props;
 const headers = content?.astro?.headers;
 const currentPage = Astro.request?.url?.pathname;
 let currentFile;
@@ -263,7 +263,7 @@ if (currentPage) {
       </aside>
       <div id="article">
         <article class="content">
-          <main>
+          <main class={className}>
             <h1 class="content-title" id="overview">{content?.title}</h1>
             <slot />
           </main>

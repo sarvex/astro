@@ -2,8 +2,23 @@
 import Layout from '../layouts/Main.astro';
 ---
 
-<Layout>
+<style>
+  .center {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: calc(100% - var(--theme-navbar-height));
+  }
+
+  .block {
+    display: block;
+  }
+</style>
+
+<Layout class="center">
   <h1>
-    <code>npm init astro</code>
+    <code class="block">npm init astro</code>
   </h1>
 </Layout>
