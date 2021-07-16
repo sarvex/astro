@@ -43,7 +43,8 @@ const icons = [
 ];
 
 const ThemeToggle: FunctionalComponent = () => {
-  const [theme, setTheme] = useState(themes[0]);
+  const userSetting = (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) || themes[0];
+  const [theme, setTheme] = useState(userSetting);
 
   useEffect(() => {
     const user = localStorage.getItem('theme');
