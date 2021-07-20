@@ -1,5 +1,11 @@
 # @astrojs/parser
 
+## 0.18.0-next.2
+
+### Patch Changes
+
+- a7e6666: compile javascript to target Node v12.x
+
 ## 0.15.4
 
 ### Patch Changes
